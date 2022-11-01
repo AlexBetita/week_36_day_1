@@ -4,8 +4,13 @@ from datetime import datetime
 
 from flask import Flask
 from .config import Configuration
+
+from .models import db, Customer, Orders, Product, order_details
+from .routes import bp
+
 from .models import db, Customer, Orders
 from .routes import customers_bp, products_bp, main_bp
+
 
 
 app = Flask(__name__)
@@ -31,6 +36,13 @@ with app.app_context():
 	order3 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Maaaan', customer_id = 3)
 	order4 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Plox', customer_id = 4)
 
+	product1 = Product(product_name = 'Toy', vendor = 'ToysRUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
+
+	order_details1 = order_details(order_id = 1, product_id = 1) 
+	order_details2 = order_details(order_id = 2, product_id = 1) 
+	order_details3 = order_details(order_id = 3, product_id = 1) 
+	order_details4 = order_details(order_id = 4, product_id = 1) 
+
 	db.session.add(customer1)
 	db.session.add(customer2)
 	db.session.add(customer3)
@@ -40,5 +52,12 @@ with app.app_context():
 	db.session.add(order2)
 	db.session.add(order3)
 	db.session.add(order4)
+
+	db.session.add(product1)
+
+	db.session.add(order_details1)
+	db.session.add(order_details2)
+	db.session.add(order_details3)
+	db.session.add(order_details4)
 
 	db.session.commit()
