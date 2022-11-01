@@ -1,1 +1,1 @@
-from customers import bp
+from .customers import bp
