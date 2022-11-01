@@ -1,9 +1,9 @@
 from flask import (Blueprint, render_template, redirect, url_for)
 
 
-bp = Blueprint("main", __name__)
+main_bp = Blueprint("main", __name__)
 
 
-@bp.route('/')
+@main_bp.route('/')
 def main():
     return render_template("main.html")
