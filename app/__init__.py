@@ -1,9 +1,16 @@
 import os
 
+from datetime import datetime
+
 from flask import Flask
 from .config import Configuration
+
 from .models import db, Customer, Orders, Product, order_details
 from .routes import bp
+
+from .models import db, Customer, Orders
+from .routes import customers_bp, products_bp, main_bp
+
 
 
 app = Flask(__name__)
@@ -11,7 +18,9 @@ app.config.from_object(Configuration)
 DB_FILE = os.environ.get("DATABASE_URL")
 db.init_app(app)
 
-app.register_blueprint(routes.bp)
+app.register_blueprint(customers_bp)
+app.register_blueprint(products_bp)
+app.register_blueprint(main_bp)
 
 
 with app.app_context():
@@ -22,10 +31,10 @@ with app.app_context():
 	customer3 = Customer(customer_name='Stanley', last_name = 'Ou', first_name = 'Stan', phone = 911)
 	customer4 = Customer(customer_name='Larry', last_name = 'Liao', first_name = 'Lar', phone = 678-999-8212)
 
-	order1 = Orders(order_date = "12/22/2009 14:00:10", shipped_date = "12/22/2009 12:00:10", status = True, comments = 'Hurry', customer_id = 1)
-	order2 = Orders(order_date = "12/22/2009 14:00:10", shipped_date = "12/22/2009 13:00:10", status = True, comments = 'Cmon', customer_id = 2)
-	order3 = Orders(order_date = "12/22/2009 14:00:10", shipped_date = "12/22/2009 14:00:10", status = True, comments = 'Maaaan', customer_id = 3)
-	order4 = Orders(order_date = "12/22/2009 14:00:10", shipped_date = "12/22/2009 15:00:10", status = True, comments = 'Plox', customer_id = 4)
+	order1 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Hurry', customer_id = 1)
+	order2 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Cmon', customer_id = 2)
+	order3 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Maaaan', customer_id = 3)
+	order4 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Plox', customer_id = 4)
 
 	product1 = Product(product_name = 'Toy', vendor = 'ToysRUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
 
