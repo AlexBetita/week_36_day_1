@@ -1,4 +1,3 @@
-
 from .db import db
 from .order_details import order_details
 from .favorites import favorites

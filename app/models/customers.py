@@ -21,5 +21,5 @@ class Customer(db.Model):
     profile_img = db.Column(db.Text(400))
 
     cart = db.relationship('Cart', back_populates='customer')
-    products = db.relationship(
-        'Product', secondary=favorites, back_populates="customers")
+    products = db.relationship('Product', secondary=favorites, back_populates="customers")
+    orders = db.relationship("Order", back_populates="customer")
