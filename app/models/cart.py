@@ -1,4 +1,5 @@
 from .db import db
+from .products_in_cart import products_in_cart
 
 
 class Cart(db.Model):
@@ -18,3 +19,5 @@ class Cart(db.Model):
         'customers.id'), nullable=False)
 
     customer = db.relationship('Customer', back_populates='cart')
+    products = db.relationship(
+        'Product', secondary=products_in_cart, back_populates="carts")
