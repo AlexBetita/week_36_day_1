@@ -1,4 +1,3 @@
-from .customers import bp
-
-from .main import bp
-from .products import bp
+from .customers import customers_bp
+from .main import main_bp
+from .products import products_bp
