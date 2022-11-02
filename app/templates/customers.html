@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="" />
   </head>
   <body>
-    <h1>All Customers:</h1>
+    <h1 class="customers-heading">All Customers:</h1>
     {% for customer in customers %}
-    <div class="customer-name">{{customer.customer_name}}</div>
-    <p>First Name: {{customer.first_name}}</p>
-    <p>Last Name: {{customer.last_name}}</p>
-    <p>Contact: {{customer.phone}}</p>
+    <div class="customer-card">
+      <div class="customer-name">{{customer.customer_name}}</div>
+      <p>First Name: {{customer.first_name}}</p>
+      <p>Last Name: {{customer.last_name}}</p>
+      <p>Contact: {{customer.phone}}</p>
+    </div>
     {% endfor %}
   </body>
 </html>
