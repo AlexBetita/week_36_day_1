@@ -16,7 +16,9 @@ class Product(db.Model):
     price = db.Column(db.Integer)
     product_img = db.Column(db.Text(400))
 
-
-    orders = db.relationship("Order", secondary=order_details , back_populates="products")
-    customers = db.relationship("Customer", secondary=favorites, back_populates="products")
-    carts = db.relationship("Cart", secondary = products_in_cart, back_populates="products" )
+    orders = db.relationship(
+        "Order", secondary=order_details, back_populates="products")
+    customers = db.relationship(
+        "Customer", secondary=favorites, back_populates="products")
+    carts = db.relationship(
+        "Cart", secondary=products_in_cart, back_populates="products")

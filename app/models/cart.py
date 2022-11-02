@@ -18,3 +18,5 @@ class Cart(db.Model):
         'customers.id'), nullable=False)
 
     customer = db.relationship('Customer', back_populates='cart')
+    products = db.relationship(
+        'Product', secondary=db.products_in_cart, back_populates="carts")
