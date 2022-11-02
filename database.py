@@ -22,11 +22,6 @@ with app.app_context():
 	product3 = Product(product_name = 'Energy Drink', vendor = 'EnRGrUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
 	product4 = Product(product_name = 'Wig', vendor = 'WigRUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
 
-	# order_details1 = order_details(order_id = 1, product_id = 1) 
-	# order_details2 = order_details(order_id = 2, product_id = 2) 
-	# order_details3 = order_details(order_id = 3, product_id = 3) 
-	# order_details4 = order_details(order_id = 4, product_id = 4) 
-
 	db.session.add(customer1)
 	db.session.add(customer2)
 	db.session.add(customer3)
@@ -43,10 +38,13 @@ with app.app_context():
 	db.session.add(product4)
   
 product1.orders.append(order1)
-order2.products.append(product2)
+product1.orders.append(order2)
+product2.orders.append(order1)
+product3.orders.append(order3)
+product2.orders.append(order3)
+product2.orders.append(order2)
+product3.orders.append(order1)
+product4.orders.append(order4)
+order4.products.append(product4)
 
-	# db.session.add(order_details1)
-	# db.session.add(order_details2)
-	# db.session.add(order_details3)
-	# db.session.add(order_details4)
 db.session.commit()
