@@ -5,13 +5,8 @@ from datetime import datetime
 from flask import Flask
 from .config import Configuration
 
-from .models import db, Customer, Orders, Product, order_details
-from .routes import bp
-
-from .models import db, Customer, Orders
+from .models import db, Customer, Order, Product
 from .routes import customers_bp, products_bp, main_bp
-
-
 
 app = Flask(__name__)
 app.config.from_object(Configuration)
@@ -31,17 +26,13 @@ with app.app_context():
 	customer3 = Customer(customer_name='Stanley', last_name = 'Ou', first_name = 'Stan', phone = 911)
 	customer4 = Customer(customer_name='Larry', last_name = 'Liao', first_name = 'Lar', phone = 678-999-8212)
 
-	order1 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Hurry', customer_id = 1)
-	order2 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Cmon', customer_id = 2)
-	order3 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Maaaan', customer_id = 3)
-	order4 = Orders(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Plox', customer_id = 4)
+	order1 = Order(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Hurry', customer_id = 1)
+	order2 = Order(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Cmon', customer_id = 2)
+	order3 = Order(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Maaaan', customer_id = 3)
+	order4 = Order(order_date = datetime.now(), shipped_date = datetime.now(), status = True, comments = 'Plox', customer_id = 4)
 
 	product1 = Product(product_name = 'Toy', vendor = 'ToysRUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
-
-	order_details1 = order_details(order_id = 1, product_id = 1) 
-	order_details2 = order_details(order_id = 2, product_id = 1) 
-	order_details3 = order_details(order_id = 3, product_id = 1) 
-	order_details4 = order_details(order_id = 4, product_id = 1) 
+	product2 = Product(product_name = 'Toy', vendor = 'ToysRUs', product_type = 'safe toy', quantity_in_stock = 100000, price = 1)
 
 	db.session.add(customer1)
 	db.session.add(customer2)
@@ -53,11 +44,10 @@ with app.app_context():
 	db.session.add(order3)
 	db.session.add(order4)
 
-	db.session.add(product1)
+	product1.orders.append(order1)
+	order2.products.append(product2)
 
-	db.session.add(order_details1)
-	db.session.add(order_details2)
-	db.session.add(order_details3)
-	db.session.add(order_details4)
+	# db.session.add(product1)
+	# db.session.add(product2)
 
 	db.session.commit()

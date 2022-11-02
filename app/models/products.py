@@ -1,4 +1,5 @@
 from .db import db
+from .order_details import order_details
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -9,3 +10,5 @@ class Product(db.Model):
     product_type = db.Column(db.String)
     quantity_in_stock = db.Column(db.Integer)
     price = db.Column(db.Integer)
+
+    orders = db.relationship("Order",secondary=order_details, back_populates='products')
