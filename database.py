@@ -1,7 +1,7 @@
 from app import app, db 
 from dotenv import load_dotenv
 load_dotenv()
-from app.models import Customer, Orders, Product, order_details
+from app.models import Customer, Orders, Product, products_in_cart, order_details, Cart
 from datetime import datetime
 
 with app.app_context():
@@ -22,29 +22,63 @@ with app.app_context():
 	product3 = Product(product_name = 'Energy Drink', vendor = 'EnRGrUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
 	product4 = Product(product_name = 'Wig', vendor = 'WigRUs', product_type = 'unsafe toy', quantity_in_stock = 100000, price = 10000000)
 
-	db.session.add(customer1)
-	db.session.add(customer2)
-	db.session.add(customer3)
-	db.session.add(customer4)
+cart1 = Cart(checkedout = 'False', quantity = 3, customer_id = 1, product_id = 1)
+cart2 = Cart(checkedout = 'False', quantity = 2, customer_id = 2, product_id = 2)
+cart3 = Cart(checkedout = 'False', quantity = 6, customer_id = 3, product_id = 3)
+cart4 = Cart(checkedout = 'False', quantity = 1, customer_id = 4, product_id = 4)
 
-	db.session.add(order1)
-	db.session.add(order2)
-	db.session.add(order3)
-	db.session.add(order4)
+db.session.add(customer1)
+db.session.add(customer2)
+db.session.add(customer3)
+db.session.add(customer4)
 
-	db.session.add(product1)
-	db.session.add(product2)
-	db.session.add(product3)
-	db.session.add(product4)
+db.session.add(order1)
+db.session.add(order2)
+db.session.add(order3)
+db.session.add(order4)
+
+db.session.add(product1)
+db.session.add(product2)
+db.session.add(product3)
+db.session.add(product4)
+
+db.session.add(cart1)
+db.session.add(cart2)
+db.session.add(cart3)
+db.session.add(cart4)
   
 product1.orders.append(order1)
-product1.orders.append(order2)
 product2.orders.append(order1)
+product3.orders.append(order1)
+
+product1.orders.append(order2)
+product2.orders.append(order2)
+
 product3.orders.append(order3)
 product2.orders.append(order3)
-product2.orders.append(order2)
-product3.orders.append(order1)
+product1.orders.append(order3)
+product2.orders.append(order3)
+product1.orders.append(order3)
+product4.orders.append(order3)
+
 product4.orders.append(order4)
+
 order4.products.append(product4)
+
+order3.products.append(product4)
+order3.products.append(product1)
+order3.products.append(product2)
+order3.products.append(product1)
+order3.products.append(product2)
+order3.products.append(product3)
+
+order2.products.append(product2)
+order2.products.append(product1)
+
+order1.products.append(product3)
+order1.products.append(product2)
+order1.products.append(product1)
+
+customer1.carts
 
 db.session.commit()
