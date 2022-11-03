@@ -10,7 +10,7 @@
   <body>
     {% if not current_user.is_anonymous %}
     <form method="POST" action="{{ url_for('customers.logout') }}">
-      <button>Logout</button>
+      <button class="ls_button">Logout</button>
     </form>
     {% endif %}
     <div class="top_bar">
