@@ -7,6 +7,12 @@
     <title>Document</title>
   </head>
   <body>
+    {% if not current_user.is_anonymous %}
+    <form method="POST" action="{{ url_for('customers.logout') }}">
+      <button>Logout</button>
+    </form>
+    {% endif %}
     <h1>GREAT!</h1>
+    {% block content %}{% endblock %}
   </body>
 </html>
