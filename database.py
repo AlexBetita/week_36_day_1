@@ -3,7 +3,7 @@ load_dotenv()
 
 from app import app, db 
 
-from app.models import Customer, Order, Product, products_in_cart, order_details, Cart
+from app.models import Customer, Order, Product, Comment, Cart, products_in_cart, order_details
 from datetime import datetime
 
 with app.app_context():
@@ -29,6 +29,10 @@ with app.app_context():
   cart3 = Cart(checkedout = False, quantity = 4, customer_id = 3)
   cart4 = Cart(checkedout = False, quantity = 1, customer_id = 4)
 
+  comment1 = Comment(comment = "I hate this product", product_id = 1)
+  comment2 = Comment(comment = "I love this product", product_id = 2)
+  comment3 = Comment(comment = "I think I hate this product", product_id = 3)
+
   #customers
   db.session.add(customer1)
   db.session.add(customer2)
@@ -53,22 +57,6 @@ with app.app_context():
   db.session.add(cart3)
   db.session.add(cart4)
 
-  # product1.orders.append(order1)
-  # product2.orders.append(order1)
-  # product3.orders.append(order1)
-
-  # product1.orders.append(order2)
-  # product2.orders.append(order2)
-
-  # product3.orders.append(order3)
-  # product2.orders.append(order3)
-  # product1.orders.append(order3)
-  # product2.orders.append(order3)
-  # product1.orders.append(order3)
-  # product4.orders.append(order3)
-
-  # product4.orders.append(order4)
-
   #order-details
   order4.products.append(product4)
 
@@ -84,14 +72,18 @@ with app.app_context():
   order1.products.append(product2)
   order1.products.append(product1)
 
-
   #favorites
   customer1.products.append(product1)
   customer2.products.append(product2)
 
-  #
+  #comments 
+  product1.comments.append(comment1)
+  product2.comments.append(comment2)
+  product3.comments.append(comment3)
 
-
-  # customer1.carts
+  #products_in_cart 
+  cart1.products.append(product1)
+  cart2.products.append(product2)
+  cart3.products.append(product3)
 
   db.session.commit()
