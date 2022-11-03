@@ -10,16 +10,21 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="/static/customers.css" />
   </head>
   <body>
     <h1 class="customers-heading">All Customers:</h1>
     {% for customer in customers %}
     <div class="customer-card">
-      <div class="customer-name">{{customer.customer_name}}</div>
-      <p>First Name: {{customer.first_name}}</p>
-      <p>Last Name: {{customer.last_name}}</p>
-      <p>Contact: {{customer.phone}}</p>
+      <div class="customer-info">
+        <p class="customer-name">{{customer.customer_name}}</p>
+        <p>First Name: {{customer.first_name}}</p>
+        <p>Last Name: {{customer.last_name}}</p>
+        <p>Contact: {{customer.phone}}</p>
+      </div>
+      <div class="more-info">
+        <button>More Info</button>
+      </div>
     </div>
     {% endfor %}
   </body>

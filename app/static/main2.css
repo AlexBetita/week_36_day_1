@@ -1,0 +1,50 @@
+body{
+    background-color: #393A3F;
+  }
+.ls_button{
+    width: 100px;
+    height:30px;
+    background-color:white;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+.top_bar{
+    display: grid;
+    grid-template-columns: 20% 50% 20%;
+}
+.left_bar{
+    margin-left: 20px;
+    grid-column: 1;
+
+}
+.right_bar{
+    color: red;
+    margin-top: 23px;
+    grid-column: 3;
+}
+.cart{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+.cart:hover{
+    color: red;
+}
+.links{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    margin-left: 40px;
+    margin-top: 40px;
+    gap: 20px;
+
+}
+.link{
+    text-decoration: none;
+    font-size: 20px;
+    color: rgb(8, 8, 8);
+    color: white;
+}
+.link:hover{
+    color: red;
+}

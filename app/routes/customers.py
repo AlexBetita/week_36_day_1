@@ -7,7 +7,7 @@ customers_bp = Blueprint("customers", __name__, url_prefix="/customers")
 
 @customers_bp.route('/<int:id>', methods=['GET'])
 def customers(id):
-  customers = [Customer.query.get_or_404(id)] if id else Customer.query.all()
+  customers = [Customer.query.get_or_404(id)] if id else Customer.query.order_by(Customer.first_name).all()
   return render_template('customers.html', customers=customers)
 
 @customers_bp.route("/login", methods=["GET", "POST"])

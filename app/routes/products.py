@@ -7,3 +7,12 @@ products_bp = Blueprint("products", __name__, url_prefix="/products")
 def get_all_products():
     products = Product.query.all()
     return render_template('products.html', products=products)
+
+@products_bp.route('/<int:id>', method=['GET'])
+def get_product():
+    products = Product.query.get(id)
+    return render_template('products.html', products=products)
+
+# @products_bp.route('/', method=["POST"])
+# def create_a_product():
+#     pass
