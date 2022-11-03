@@ -11,11 +11,29 @@
   <body>
     <h1>All Products:</h1>
     {% for product in products %}
-    <div class="product-name">{{product.product_name}}</div>
-    <p>Vendor: {{product.vendor}}</p>
-    <p>Product Type: {{product.product_type}}</p>
-    <p>Quantity in stock: {{product.quantity_in_stock}}</p>
-    <p>Price: {{product.price}}</p>
+    <div>
+      <p class="product-name">{{product.product_name}}</p>
+      <p>Vendor: {{product.vendor}}</p>
+      <p>Product Type: {{product.product_type}}</p>
+      <p>Quantity in stock: {{product.quantity_in_stock}}</p>
+      <p>Price: {{product.price}}</p>
+    </div>
+    <div>
+      <button>Favorite/Unfavorite button holder</button>
+      <button>Add to Cart button holder</button>
+      <button>Show Comments button holder</button>
+    </div>
     {% endfor %}
+    <div>
+      <form method="post" action="{{ url_for('products.create') }}">
+        <div>{{ form.product_name.label }} {{ form.product_name }}</div>
+        <div>{{ form.vendor.label }} {{ form.vendor }}</div>
+        <div>{{ form.product_type.label }} {{ form.product_type }}</div>
+        <div>
+          {{ form.quantity_in_stock.label }} {{ form.quantity_in_stock }}
+        </div>
+        <div>{{ form.price.label }} {{ form.price }}</div>
+      </form>
+    </div>
   </body>
 </html>
