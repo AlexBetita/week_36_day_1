@@ -23,3 +23,6 @@ class Customer(db.Model):
     cart = db.relationship('Cart', back_populates='customer')
     products = db.relationship('Product', secondary=favorites, back_populates="customers")
     orders = db.relationship("Order", back_populates="customer")
+
+    def check_phone(self, phone):
+        return self.phone == phone

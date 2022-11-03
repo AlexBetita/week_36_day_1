@@ -1,10 +1,8 @@
 import os
-
 from datetime import datetime
-
 from flask import Flask
+from flask_login import LoginManager
 from .config import Configuration
-
 from .models import db, Customer, Order, Product, order_details
 from .routes import customers_bp, products_bp, main_bp
 
@@ -12,11 +10,12 @@ from .routes import customers_bp, products_bp, main_bp
 app = Flask(__name__)
 app.config.from_object(Configuration)
 DB_FILE = os.environ.get("DATABASE_URL")
-db.init_app(app)
-
 app.register_blueprint(customers_bp)
 app.register_blueprint(products_bp)
 app.register_blueprint(main_bp)
+db.init_app(app)
+login = LoginManager(app)
+login.login_view = "customers.login"
 
 
 # with app.app_context():

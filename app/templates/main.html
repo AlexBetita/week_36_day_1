@@ -8,22 +8,28 @@
     <title>Document</title>
   </head>
   <body>
+    {% if not current_user.is_anonymous %}
+    <form method="POST" action="{{ url_for('customers.logout') }}">
+      <button class="ls_button">Logout</button>
+    </form>
+    {% endif %}
     <div class="top_bar">
       <h1 class="left_bar">WELCOME!</h1>
       <div class="right_bar">
-        <a class ='cart'href="">Cart</a>
+        <a class="cart" href="">Cart</a>
         <button class="ls_button">Login</button>
         <button class="ls_button">Signup</button>
         <!--  <a href="">Your orders</a> -->
       </div>
     </div>
     <div class="links">
-      <div >
+      <div>
         <a class="link" href="/customers"> See all customers</a>
       </div>
-      <div >
+      <div>
         <a class="link" href="/products"> See all products</a>
       </div>
     </div>
+    {% block content %}{% endblock %}
   </body>
 </html>

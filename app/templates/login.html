@@ -1,0 +1,25 @@
+{% extends "main.html" %} {% block content %}
+<form method="post" action="{{ url_for('customers.login') }}">
+  {{ form.csrf_token }}
+  <div>
+    {{ form.customer_name.label }} {{ form.customer_name }} {% if
+    form.customer_name.errors %}
+    <ul>
+      {% for error in form.customer_name.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <div>
+    {{ form.phone.label }} {{ form.phone }} {% if form.phone.errors %}
+    <ul>
+      {% for error in form.phone.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+  <div>{{ form.submit }}</div>
+</form>
+{% endblock %}
